@@ -16,7 +16,7 @@ Enjoy!
 ## Usage
 
 ```swift
- import PopUpMenuSwift
+import PopUpMenuSwift
 ```
 
 ```swift
