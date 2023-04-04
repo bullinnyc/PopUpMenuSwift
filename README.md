@@ -51,7 +51,7 @@ let menuItems = [
     "Fifth item"
 ]
 
-// Create PopUp with light style (default).
+// PopUp with light style (default).
 PopUpMenuView(
     anyView: AnyView(firstMenuView),
     menuItems: menuItems
@@ -59,7 +59,7 @@ PopUpMenuView(
     print("Dropdown index: \(index)")
 }
 
-// Create PopUp with dark style.
+// PopUp with dark style.
 PopUpMenuView(
     anyView: AnyView(secondMenuView),
     menuItems: menuItems
@@ -68,7 +68,7 @@ PopUpMenuView(
 }
 .popUpMenuStyle(.darkStyle)
 
-// Create PopUp with custom style.
+// PopUp with custom style.
 PopUpMenuView(
     anyView: AnyView(thirdMenuView),
     menuItems: menuItems

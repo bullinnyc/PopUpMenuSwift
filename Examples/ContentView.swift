@@ -6,6 +6,8 @@
 //  Copyright © 2023 Dmitry Kononchuk. All rights reserved.
 //
 
+#if os(iOS)
+
 import SwiftUI
 import PopUpMenuSwift
 
@@ -125,3 +127,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+#endif
