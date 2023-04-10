@@ -2,13 +2,13 @@
 //  DeviceRotationViewModifier.swift
 //
 //
-//  Created by Dmitry Kononchuk on 08.03.2023.
+//  Created by Dmitry Kononchuk on 04.04.2023.
 //  Copyright © 2023 Dmitry Kononchuk. All rights reserved.
 //
 
 import SwiftUI
 
-struct DeviceRotationViewModifier: ViewModifier {
+private struct DeviceRotationViewModifier: ViewModifier {
     // MARK: - Public Properties
     let action: (UIDeviceOrientation) -> Void
     

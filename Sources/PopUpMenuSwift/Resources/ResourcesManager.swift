@@ -7,7 +7,6 @@
 //
 
 #if canImport(UIKit)
-
 import UIKit
 
 // Colors.
@@ -22,5 +21,4 @@ public let venus = UIColor(
     in: Bundle.module,
     compatibleWith: nil
 ) ?? UIColor()
-
 #endif

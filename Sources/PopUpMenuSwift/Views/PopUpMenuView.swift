@@ -36,6 +36,7 @@ public struct PopUpMenuView: View {
     private let popUpType: PopUpType
     private let popUpOffsetY: CGFloat
     private let isBounceAnimation: Bool
+    private let isPopUpAnimation: Bool
     private let isImpactFeedback: Bool
     private let zIndex: Double
     private let timeInterval: Double?
@@ -144,7 +145,7 @@ public struct PopUpMenuView: View {
                                 }
                         )
                     }
-                    .transition(.popUpTransition())
+                    .popUpTransition(isAnimation: isPopUpAnimation)
                     .position(
                         x: getRectangleCoordinateX(geometry),
                         y: getRectangleCoordinateY(geometry)
@@ -222,6 +223,7 @@ public struct PopUpMenuView: View {
     ///   - popUpType: Popup opening type.
     ///   - popUpOffsetY: Popup offset y position.
     ///   - isBounceAnimation: Set to `true` for bouncing animation of the popup.
+    ///   - isPopUpAnimation: Set to `false`  to disable animation of the popup.
     ///   - isImpactFeedback: Set to `false` to disable haptics to simulate physical impacts.
     ///   - zIndex: Controls the display order of overlapping views.
     ///   - timeInterval: Time interval for the popup to be visible.
@@ -236,6 +238,7 @@ public struct PopUpMenuView: View {
         popUpType: PopUpType = .top,
         popUpOffsetY: CGFloat = 6,
         isBounceAnimation: Bool = false,
+        isPopUpAnimation: Bool = true,
         isImpactFeedback: Bool = true,
         zIndex: Double = .zero,
         timeInterval: Double? = nil,
@@ -254,6 +257,7 @@ public struct PopUpMenuView: View {
         self.popUpType = popUpType
         self.popUpOffsetY = popUpOffsetY
         self.isBounceAnimation = isBounceAnimation
+        self.isPopUpAnimation = isPopUpAnimation
         self.isImpactFeedback = isImpactFeedback
         self.zIndex = zIndex
         self.timeInterval = timeInterval
