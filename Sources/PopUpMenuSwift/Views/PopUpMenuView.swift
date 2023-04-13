@@ -117,6 +117,8 @@ public struct PopUpMenuView: View {
                                     cornerRadius: popUpStyle.itemCornerRadius,
                                     padding: popUpStyle.itemPadding
                                 ) {
+                                    guard menuState.isShowMenu[menuIndex] else { return }
+                                    
                                     menuState.clearState()
                                     startOrStopPopUpTimer()
                                     stopBounceTimerIfNeeded()
