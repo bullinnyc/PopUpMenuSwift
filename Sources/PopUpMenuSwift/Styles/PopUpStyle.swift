@@ -350,7 +350,7 @@ extension View {
     ///         "Fourth item"
     ///     ]
     ///
-    ///     PopUpMenuView(AnyView(menuView), menuItems: menuItems) { index in
+    ///     PopUpMenuView(anyView: menuView, menuItems: menuItems) { index in
     ///         print("Dropdown index: \(index)")
     ///     }
     ///     .popUpMenuStyle(.darkStyle)

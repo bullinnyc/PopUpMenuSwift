@@ -16,8 +16,8 @@ let package = Package(
             targets: ["PopUpMenuSwift"]
         ),
         .library(
-            name: "ContentView",
-            targets: ["ContentView"]
+            name: "ExamplePopUpMenuSwift",
+            targets: ["Examples"]
         )
     ],
     dependencies: [
@@ -32,7 +32,7 @@ let package = Package(
             dependencies: []
         ),
         .target(
-            name: "ContentView",
+            name: "Examples",
             dependencies: ["PopUpMenuSwift"],
             path: "Examples"
         ),

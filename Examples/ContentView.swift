@@ -54,7 +54,7 @@ struct ContentView: View {
                 HStack {
                     // PopUp with light style (default).
                     PopUpMenuView(
-                        anyView: AnyView(firstMenuView),
+                        anyView: firstMenuView,
                         menuItems: menuItems
                     ) { index in
                         print("Dropdown index: \(index)")
@@ -62,7 +62,7 @@ struct ContentView: View {
                     
                     // PopUp with dark style.
                     PopUpMenuView(
-                        anyView: AnyView(secondMenuView),
+                        anyView: secondMenuView,
                         menuItems: menuItems
                     ) { index in
                         print("Dropdown index: \(index)")
@@ -71,7 +71,7 @@ struct ContentView: View {
                     
                     // PopUp with custom style.
                     PopUpMenuView(
-                        anyView: AnyView(thirdMenuView),
+                        anyView: thirdMenuView,
                         menuItems: menuItems
                     ) { index in
                         print("Dropdown index: \(index)")
@@ -87,7 +87,7 @@ struct ContentView: View {
                 
                 // PopUp with custom style.
                 PopUpMenuView(
-                    anyView: AnyView(fourthMenuView),
+                    anyView: fourthMenuView,
                     menuItems: menuItems,
                     popUpType: .bottom,
                     isBounceAnimation: true
@@ -103,6 +103,7 @@ struct ContentView: View {
                 )
             }
         }
+        .statusBar(hidden: true)
     }
     
     // MARK: - Private Properties

@@ -26,7 +26,7 @@ public struct PopUpMenuView: View {
     
     // MARK: - Private Properties
     private let menuIndex: Int
-    private let anyView: AnyView
+    private let anyView: any View
     private let menuItems: [String]
     private let textAlignment: TextAlignment
     private let fontName: String
@@ -162,7 +162,7 @@ public struct PopUpMenuView: View {
                     )
                 }
                 
-                anyView
+                AnyView(anyView)
                     .disabled(true)
                     .sizeOfView { size in
                         anyViewSize = size
@@ -181,7 +181,8 @@ public struct PopUpMenuView: View {
                             startOrStopPopUpTimer()
                             stopBounceTimerIfNeeded()
                         } else {
-                            print("**** \(PopUpMenuView.self) error: \(PopUpError.noSpace.rawValue) \(popUpType).")
+                            let error = "\(PopUpError.noSpace.rawValue) \(popUpType)"
+                            print("**** \(PopUpMenuView.self) error: \(error).")
                         }
                     }
             }
@@ -230,7 +231,7 @@ public struct PopUpMenuView: View {
     ///   - zIndex: Controls the display order of overlapping views.
     ///   - timeInterval: Time interval for the popup to be visible.
     public init(
-        anyView: AnyView,
+        anyView: any View,
         menuItems: [String],
         textAlignment: TextAlignment = .center,
         fontName: String = "Seravek",
@@ -430,5 +431,116 @@ public struct PopUpMenuView: View {
             let impactFeedback = UIImpactFeedbackGenerator(style: .light)
             impactFeedback.impactOccurred()
         }
+    }
+}
+
+// MARK: - Preview Provider
+@available(iOS 15.0, *)
+struct PopUpMenuView_Previews: PreviewProvider {
+    static var previews: some View {
+        let firstMenuView = createTextView(
+            "Light style",
+            foregroundColor: .black,
+            backgroundColor: .white
+        )
+        
+        let secondMenuView = createTextView(
+            "Dark style",
+            foregroundColor: .white,
+            backgroundColor: .black
+        )
+        
+        let thirdMenuView = createTextView(
+            "Custom style",
+            foregroundColor: .white,
+            backgroundColor: .pink
+        )
+        
+        let fourthMenuView = createTextView(
+            "Custom style with bouncing",
+            foregroundColor: .white,
+            backgroundColor: Color(theia)
+        )
+        
+        let menuItems = [
+            "First item. Do something on tapped on the item.",
+            "Second item",
+            "Third item",
+            "Fourth item",
+            "Fifth item"
+        ]
+        
+        ZStack {
+            Color(venus).opacity(0.5)
+                .ignoresSafeArea()
+            
+            VStack {
+                HStack {
+                    // PopUp with light style (default).
+                    PopUpMenuView(
+                        anyView: firstMenuView,
+                        menuItems: menuItems
+                    ) { index in
+                        print("Dropdown index: \(index)")
+                    }
+                    
+                    // PopUp with dark style.
+                    PopUpMenuView(
+                        anyView: secondMenuView,
+                        menuItems: menuItems
+                    ) { index in
+                        print("Dropdown index: \(index)")
+                    }
+                    .popUpMenuStyle(.darkStyle)
+                    
+                    // PopUp with custom style.
+                    PopUpMenuView(
+                        anyView: thirdMenuView,
+                        menuItems: menuItems
+                    ) { index in
+                        print("Dropdown index: \(index)")
+                    }
+                    .popUpMenuStyle(
+                        .customStyle(
+                            textColor: .white,
+                            itemBackgroundColor: .pink,
+                            backgroundColor: .pink.opacity(0.5)
+                        )
+                    )
+                }
+                
+                // PopUp with custom style.
+                PopUpMenuView(
+                    anyView: fourthMenuView,
+                    menuItems: menuItems,
+                    popUpType: .bottom,
+                    isBounceAnimation: true
+                ) { index in
+                    print("Dropdown index: \(index)")
+                }
+                .popUpMenuStyle(
+                    .customStyle(
+                        textColor: .white,
+                        itemBackgroundColor: Color(theia),
+                        backgroundColor: Color(theia).opacity(0.5)
+                    )
+                )
+            }
+        }
+        .environment(\.colorScheme, .light)
+        .previewInterfaceOrientation(.portrait)
+    }
+    
+    static private func createTextView(
+        _ text: String,
+        foregroundColor: Color,
+        backgroundColor: Color
+    ) -> some View {
+        Text(text)
+            .foregroundColor(foregroundColor)
+            .font(.custom("Seravek", size: 18))
+            .padding(8)
+            .background(backgroundColor)
+            .cornerRadius(8)
     }
 }
